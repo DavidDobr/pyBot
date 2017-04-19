@@ -4,6 +4,8 @@
 # you can use: conda install -c daviddobr python-telegram-bot=5.3.0
 # urllib3 can be installed using: conda install -c daviddobr urllib3=1.20
 
+# tutorial from https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API
+
 import telegram
 
 with open('tars.token', 'r') as f:
