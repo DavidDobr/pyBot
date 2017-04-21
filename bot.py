@@ -1,4 +1,5 @@
-#!/home/adam/miniconda3/envs/tBot/bin/python
+# no shebang :
+# # !/home/adam/miniconda3/envs/tBot/bin/python
 
 # import https://github.com/python-telegram-bot
 # you can use: conda install -c daviddobr python-telegram-bot=5.3.0
@@ -8,7 +9,8 @@
 
 import telegram
 
-with open('tars.token', 'r') as f:
+tokenPath = '/home/adam/workspace/pyBot/tars.token'
+with open(tokenPath, 'r') as f:
     tarsToken = f.readlines()[0].replace('\n', '')
 
 #print(tarsToken)
@@ -39,7 +41,18 @@ def echo(bot, update):
 
 from telegram.ext import MessageHandler, Filters
 echo_handler = MessageHandler(Filters.text, echo)
+
+# Note: As soon as you add new handlers to dispatcher, they are in effect.
 dispatcher.add_handler(echo_handler)
+
+def caps(bot, update, args):
+    """echo user's message in all caps
+    """
+    text_caps = ' '.join(args).upper()
+    bot.sendMessage(chat_id=update.message.chat_id, text=text_caps)
+
+caps_handler = CommandHandler('caps', caps, pass_args=True)
+dispatcher.add_handler(caps_handler)
 
 print('starting bot now...')
 updater.start_polling()
