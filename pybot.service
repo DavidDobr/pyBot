@@ -1,0 +1,12 @@
+# http://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
+
+[Unit]
+Description=TART Telegram Bot
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/home/adam/miniconda3/envs/tBot/bin/python /home/adam/workspace/pyBot/bot.py > /home/adam/workspace/pyBot/systemd_pybot.log 2>&1
+
+[Install]
+WantedBy=multi-user.target
